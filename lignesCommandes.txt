@@ -1,0 +1,25 @@
+Création du Projet Laravel:
+composer create-project --prefer-dist laravel/laravel Maisonneuve2496359 "10"
+
+
+Création des Modèles:
+create database laravel_network;
+php artisan make:model Student -m
+php artisan make:model City -m
+
+
+Création des Tables:
+php artisan migrate
+
+
+Saisie des Villes et étudiants:
+php artisan make:factory CityFactory --model=City
+php artisan make:factory StudentFactory --model=Student
+php artisan tinker
+\App\Models\Student::factory()->times(100)->create();
+\App\Models\City::factory()->times(15)->create();
+
+
+Création des Contrôleurs
+php artisan make:controller CityController -m City
+php artisan make:controller StudentController -m Student

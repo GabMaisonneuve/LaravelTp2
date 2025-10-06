@@ -1,0 +1,134 @@
+/*background */
+body {
+    background: linear-gradient(135deg, #f0f4ff, #c9d3f5);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/*gradient */
+.navbar {
+    background: linear-gradient(90deg, #0d6efd, #6610f2) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Navbar*/
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Nav links */
+.nav-link {
+    color: #f1f1f1 !important;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #ffd43b !important;
+}
+
+/* Gradient button */
+.btn-primary {
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #0b5ed7, #520dc2);
+}
+
+.btn-edit {
+    background: linear-gradient(90deg, #28a745, #2caf49);
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-edit:hover {
+    background: linear-gradient(90deg, #218838, #2caf49);
+}
+
+/* Success alert */
+.alert-success {
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer.footer {
+    background: #212529;
+    border-top: 5px solid;
+    border-image: linear-gradient(90deg, #0d6efd, #6610f2) 1;
+    font-size: 0.9rem;
+}
+
+.background-gradient {
+    background: linear-gradient(90deg, #007bff 0%, #6610f2 100%);
+    color: white;
+}
+
+.footer {
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Student page */
+
+/* Page title */
+.page-title {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* Card style */
+.student-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background: linear-gradient(135deg, #dee4f8, #f0f4ff);
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.show-card {
+    background: linear-gradient(135deg, #dee4f8, #f0f4ff);
+}
+
+/* Custom header color */
+.bg-custom {
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+}
+
+/* Buttons */
+.btn-custom {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 15px;
+    transition: background 0.2s ease-in-out;
+}
+
+.btn-custom:hover {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-custom-danger {
+    background: #e93553;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 15px;
+    transition: background 0.2s ease-in-out;
+}
+
+.btn-custom-danger:hover {
+    background: #b81e38;
+    color: white;
+}
