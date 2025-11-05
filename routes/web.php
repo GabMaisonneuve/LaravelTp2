@@ -2,33 +2,33 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SetLocaleController;
+use App\Http\Controllers\ForumPostController;
+use App\Http\Controllers\SharedFileController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Auth routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Student list + show
-Route::get('/', [StudentController::class, 'index'])->name('student.index');
-Route::get('/students', [StudentController::class, 'index'])->name('student.index');
-Route::get('/student/{student}', [StudentController::class, 'show'])->name('student.show');
+// Language switch
+Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
-// Create
-Route::get('/create/student', [StudentController::class, 'create'])->name('student.create');
-Route::post('/create/student', [StudentController::class, 'store'])->name('student.store');
+// Student routes (all CRUD) - only accessible if authenticated
+Route::middleware('auth')->group(function () {
+    Route::resource('student', StudentController::class);
+});
 
-// Edit + update
-Route::get('/edit/student/{student}', [StudentController::class, 'edit'])->name('student.edit');
-Route::put('/edit/student/{student}', [StudentController::class, 'update'])->name('student.update');
+Route::middleware('auth')->group(function () {
+    Route::resource('forum', ForumPostController::class);
+});
 
-// Delete
-Route::delete('/student/{student}', [StudentController::class, 'destroy'])->name('student.destroy');
-
-
+Route::middleware('auth')->group(function () {
+    Route::resource('files', SharedFileController::class);
+});
+// Home page points to students list
+Route::get('/', [StudentController::class, 'index'])->name('home');
 

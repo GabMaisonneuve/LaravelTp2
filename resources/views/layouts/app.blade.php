@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="{{ app()->getLocale() }}" class="h-100">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,15 +26,60 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarsExample03">
                     <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('student.index') }}">Students</a>
+                            <a class="nav-link {{ request()->routeIs('student.index') ? 'active' : '' }}" href="{{ route('student.index') }}">
+                                {{ __('messages.students') }}
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('student.create') }}">Create</a>
+                            <a class="nav-link {{ request()->routeIs('student.create') ? 'active' : '' }}" 
+                                href="{{ route('student.create') }}">
+                                {{ __('messages.create') }}
+                            </a>
                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('forum.create') ? 'active' : '' }}" 
+                                href="{{ route('forum.create') }}">
+                                {{ __('messages.add_a_post') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('forum.index') ? 'active' : '' }}" 
+                                href="{{ route('forum.index') }}">
+                                {{ __('messages.forum') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('files.index') ? 'active' : '' }}" 
+                                href="{{ route('files.index') }}">
+                                {{ __('messages.files_directory') }}
+                            </a>
+                        </li>
+                        
+                        
                     </ul>
+
+                    <!-- Language Switch -->
+                    <div class="dropdown me-3">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            🌐 {{ strtoupper(app()->getLocale()) }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">English</a></li>
+                            <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">Français</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Logout Button -->
+                    @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">{{ __('messages.logout') }}</button>
+                    </form>
+                    @endauth
                 </div>
             </div>
         </nav>
@@ -44,7 +89,7 @@
     <div class="container flex-grow-1 py-4">
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                 {{ session('success') }}
+                {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
@@ -54,11 +99,11 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 text-white background-gradient">
-    <div class="container text-center">
-        &copy; {{ date('Y') }} {{ config('app.name') }}. All Rights Reserved.
-        <br>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-    </div>
-</footer>
+        <div class="container text-center">
+            &copy; {{ date('Y') }} {{ config('app.name') }}. {{ __('messages.rights') }}<br>
+            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+        </div>
+    </footer>
 
     <!-- Bootstrap Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
